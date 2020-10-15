@@ -13,9 +13,10 @@ import java.net.*;
 public class ClientThread
 	extends Thread {
 	
-	private Socket clientSocket;
-	private int idClient;
-	
+	public Socket clientSocket;
+	public int idClient;
+	PrintStream socOut;
+
 	ClientThread(Socket s, int id) {
 		this.clientSocket = s;
 		this.idClient = id;
@@ -29,17 +30,25 @@ public class ClientThread
     	  try {
     		BufferedReader socIn = null;
     		socIn = new BufferedReader(
-    			new InputStreamReader(clientSocket.getInputStream()));    
-    		PrintStream socOut = new PrintStream(clientSocket.getOutputStream());
+    			new InputStreamReader(clientSocket.getInputStream()));
+    		 socOut = new PrintStream(clientSocket.getOutputStream());
     		while (true) {
-    		  String line = socIn.readLine();
-    		  socOut.println(line + " " + this.idClient);
+    		  String line=socIn.readLine();
+    		  if(line.length()>0) {
+				  System.out.println(line + " " + this.idClient);
+				  EchoServerMultiThreaded.sendMessage(line + " " + this.idClient);
+			  }
+
     		}
     	} catch (Exception e) {
         	System.err.println("Error in EchoServer:" + e); 
         }
        }
-  
-  }
+
+
+	public void sendMessage(String message) {
+		socOut.println(message);
+	}
+}
 
   
