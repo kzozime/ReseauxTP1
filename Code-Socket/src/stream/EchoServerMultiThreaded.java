@@ -28,7 +28,7 @@ public class EchoServerMultiThreaded  {
 		}
 		try {
 			listenSocket = new ServerSocket(Integer.parseInt(args[0])); //port
-			System.out.println("Server ready..."); 
+			System.out.println("Server ready...");
 			while (true) {
 				Socket clientSocket = listenSocket.accept();
 				System.out.println("Connexion from:" + clientSocket.getInetAddress());
