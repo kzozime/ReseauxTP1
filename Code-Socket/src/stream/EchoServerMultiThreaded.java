@@ -14,7 +14,7 @@ import java.util.LinkedList;
 public class EchoServerMultiThreaded  {
 
 	public static int globalId = 1;
-	public static LinkedList<ClientThread> listeClients=new LinkedList<ClientThread>();
+	public static LinkedList<ClientThreadEcriture> listeClients=new LinkedList<ClientThreadEcriture>();
  	/**
   	* main method
 	* @param EchoServer port
@@ -32,7 +32,7 @@ public class EchoServerMultiThreaded  {
 			while (true) {
 				Socket clientSocket = listenSocket.accept();
 				System.out.println("Connexion from:" + clientSocket.getInetAddress());
-				ClientThread ct = new ClientThread(clientSocket, globalId++);
+				ClientThreadEcriture ct = new ClientThreadEcriture(clientSocket, listeClients);
 				listeClients.add(ct);
 				ct.start();
 			}
@@ -40,15 +40,17 @@ public class EchoServerMultiThreaded  {
 			System.err.println("Error in EchoServer:" + e);
 		}
      }
-     public synchronized static void sendMessage(String message) {
-    	synchronized (listeClients){
 
-			for(ClientThread client : listeClients) {
-				client.sendMessage(message);
-			}
-		}
-
-	 }
   }
+
+
+
+
+
+
+
+
+
+
 
   
