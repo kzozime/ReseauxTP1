@@ -45,13 +45,23 @@ public class EchoClient {
                                + "the connection to:"+ args[0]);
             System.exit(1);
         }
+        
+        System.out.println("Quel est votre nom :");
+		String name = stdIn.readLine();
+		
+		ClientThreadLecture th = new ClientThreadLecture(echoSocket, name);
+		th.start();
+		socOut.println("|| " + name + " a rejoint le chat ||");
                              
         String line;
         while (true) {
         	line=stdIn.readLine();
         	if (line.equals(".")) break;
-        	socOut.println(line);
-        	System.out.println("echo: " + socIn.readLine());
+        	if(!line.equals("bye")){
+				socOut.println(name + " : " + line);
+			}else{ 
+				break;
+			}
         }
       socOut.close();
       socIn.close();
