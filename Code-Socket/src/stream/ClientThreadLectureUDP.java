@@ -26,7 +26,7 @@ public class ClientThreadLectureUDP extends Thread {
         this.socketLecture = s;
     }
     /**
-     * Méthode appelée au démarrage du thread grâce à la méthose start(). Elle se charge de le lire les informations qui arrivent sur le socIn et les affiche ensuite.
+     * Méthode appelée au démarrage du thread grâce à la méthode start(). Elle se charge de le lire les informations qui arrivent sur le socIn et les affiche ensuite.
      */
     public void run() {
         DatagramPacket recv;
