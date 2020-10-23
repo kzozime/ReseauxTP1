@@ -1,12 +1,7 @@
 package stream;
 
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.net.DatagramPacket;
 import java.net.MulticastSocket;
-import java.net.Socket;
 
 public class ClientThreadLectureUDP extends Thread {
 
@@ -30,7 +25,6 @@ public class ClientThreadLectureUDP extends Thread {
      */
     public void run() {
         DatagramPacket recv;
-        BufferedReader socIn;
         try {
             // Build a datagram packet for response
 
